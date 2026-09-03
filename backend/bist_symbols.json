@@ -1,0 +1,1652 @@
+[
+  {
+    "ticker": "THYAO",
+    "name": "Türk Hava Yolları",
+    "sector": "Ulaştırma"
+  },
+  {
+    "ticker": "ASELS",
+    "name": "Aselsan",
+    "sector": "Savunma"
+  },
+  {
+    "ticker": "GARAN",
+    "name": "Garanti BBVA",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "BIMAS",
+    "name": "BİM Mağazalar",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "AKBNK",
+    "name": "Akbank",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "ISCTR",
+    "name": "İş Bankası (C)",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "YKBNK",
+    "name": "Yapı Kredi",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "SASA",
+    "name": "Sasa Polyester",
+    "sector": "Petrokimya"
+  },
+  {
+    "ticker": "TUPRS",
+    "name": "Tüpraş",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "EREGL",
+    "name": "Ereğli Demir Çelik",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "KCHOL",
+    "name": "Koç Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "SAHOL",
+    "name": "Sabancı Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "ASTOR",
+    "name": "Astor Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "FROTO",
+    "name": "Ford Otosan",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "TOASO",
+    "name": "Tofaş Otomobil",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "ARCLK",
+    "name": "Arçelik",
+    "sector": "Beyaz Eşya"
+  },
+  {
+    "ticker": "PETKM",
+    "name": "Petkim",
+    "sector": "Petrokimya"
+  },
+  {
+    "ticker": "PGSUS",
+    "name": "Pegasus Hava Yolları",
+    "sector": "Ulaştırma"
+  },
+  {
+    "ticker": "TCELL",
+    "name": "Turkcell",
+    "sector": "Telekomünikasyon"
+  },
+  {
+    "ticker": "TTKOM",
+    "name": "Türk Telekom",
+    "sector": "Telekomünikasyon"
+  },
+  {
+    "ticker": "MGROS",
+    "name": "Migros",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "SOKM",
+    "name": "Şok Marketler",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "ENKAI",
+    "name": "Enka İnşaat",
+    "sector": "İnşaat"
+  },
+  {
+    "ticker": "EKGYO",
+    "name": "Emlak Konut GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "HALKB",
+    "name": "Halkbank",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "VAKBN",
+    "name": "VakıfBank",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "TSKB",
+    "name": "TSKB",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "SISE",
+    "name": "Şişecam",
+    "sector": "Cam"
+  },
+  {
+    "ticker": "KOZAL",
+    "name": "Koza Altın",
+    "sector": "Madencilik"
+  },
+  {
+    "ticker": "KOZAA",
+    "name": "Koza Madencilik",
+    "sector": "Madencilik"
+  },
+  {
+    "ticker": "CCOLA",
+    "name": "Coca-Cola İçecek",
+    "sector": "İçecek"
+  },
+  {
+    "ticker": "ULKER",
+    "name": "Ülker Bisküvi",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "AEFES",
+    "name": "Anadolu Efes",
+    "sector": "İçecek"
+  },
+  {
+    "ticker": "DOHOL",
+    "name": "Doğan Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "ALARK",
+    "name": "Alarko Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "CIMSA",
+    "name": "Çimsa",
+    "sector": "Çimento"
+  },
+  {
+    "ticker": "OYAKC",
+    "name": "Oyak Çimento",
+    "sector": "Çimento"
+  },
+  {
+    "ticker": "HEKTS",
+    "name": "Hektaş",
+    "sector": "Kimya"
+  },
+  {
+    "ticker": "GESAN",
+    "name": "Gensan",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "ZOREN",
+    "name": "Zorlu Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "AGHOL",
+    "name": "AG Anadolu Grubu",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "TAVHL",
+    "name": "TAV Havalimanları",
+    "sector": "Ulaştırma"
+  },
+  {
+    "ticker": "ISMEN",
+    "name": "İş Yatırım Menkul",
+    "sector": "Menkul"
+  },
+  {
+    "ticker": "KTLEV",
+    "name": "Katılım Emeklilik",
+    "sector": "Sigorta"
+  },
+  {
+    "ticker": "GUBRF",
+    "name": "Gübre Fabrikaları",
+    "sector": "Kimya"
+  },
+  {
+    "ticker": "OTKAR",
+    "name": "Otokar",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "TTRAK",
+    "name": "Türk Traktör",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "VESTL",
+    "name": "Vestel",
+    "sector": "Elektronik"
+  },
+  {
+    "ticker": "KRDMD",
+    "name": "Kardemir (D)",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "DOAS",
+    "name": "Doğuş Otomotiv",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "BRSAN",
+    "name": "Borusan Boru",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "ENJSA",
+    "name": "Enerjisa Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "ODAS",
+    "name": "Odas Elektrik",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "AYDEM",
+    "name": "Aydem Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "AYEN",
+    "name": "Ayen Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "AYGAZ",
+    "name": "Aygaz",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "BUCIM",
+    "name": "Bucim Çimento",
+    "sector": "Çimento"
+  },
+  {
+    "ticker": "BURCE",
+    "name": "Burçelik",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "BURVA",
+    "name": "Burçelik Vana",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "CRDFA",
+    "name": "Creditwest Faktoring",
+    "sector": "Finans"
+  },
+  {
+    "ticker": "CUSAN",
+    "name": "Çuhadarlar Sanayi",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "DENGE",
+    "name": "Denge Yatırım",
+    "sector": "Yatırım"
+  },
+  {
+    "ticker": "DERHL",
+    "name": "Derlüks Deri",
+    "sector": "Deri"
+  },
+  {
+    "ticker": "DGNMO",
+    "name": "Doğan Mohür",
+    "sector": "Medya"
+  },
+  {
+    "ticker": "DITAS",
+    "name": "Ditaş Doğu İşleri",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "DIRHM",
+    "name": "Dirmepler",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "DMSAS",
+    "name": "Dimaksed Metal",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "DURDO",
+    "name": "Dursun Değirmen",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "DYOBY",
+    "name": "Dyo Boya",
+    "sector": "Kimya"
+  },
+  {
+    "ticker": "DZGYO",
+    "name": "DzGYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "EDATA",
+    "name": "Edata",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "EGEEN",
+    "name": "Ege Endüstri",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "EGEPO",
+    "name": "Ege Profil",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "EGGHL",
+    "name": "Ege Gayrimenkul",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "EGPRO",
+    "name": "Ege Proje",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "EGSER",
+    "name": "Ege Seramik",
+    "sector": "Seramik"
+  },
+  {
+    "ticker": "EKIZ",
+    "name": "Ekiz Oksijen",
+    "sector": "Kimya"
+  },
+  {
+    "ticker": "EMKEL",
+    "name": "Emkel Elektrik",
+    "sector": "Elektrik"
+  },
+  {
+    "ticker": "EMNIS",
+    "name": "Emniyet Sigorta",
+    "sector": "Sigorta"
+  },
+  {
+    "ticker": "ENKON",
+    "name": "Enkomobil",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "ERSU",
+    "name": "Ersu Meyve",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "ESCAR",
+    "name": "Escar Otomotiv",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "ESCOM",
+    "name": "Eskişehir Cam",
+    "sector": "Cam"
+  },
+  {
+    "ticker": "ETILR",
+    "name": "Etiler Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "ETYAT",
+    "name": "Etibank Yatırım",
+    "sector": "Yatırım"
+  },
+  {
+    "ticker": "EUHOL",
+    "name": "Eurohold",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "EUPWR",
+    "name": "Euro Teknoloji",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "EUREN",
+    "name": "Euro Yesil Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "EUTHR",
+    "name": "Euro Thruster",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "EUYO",
+    "name": "Euro Yiğit Oto",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "FADE",
+    "name": "Fade Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "FLAP",
+    "name": "Flap Kitap",
+    "sector": "Medya"
+  },
+  {
+    "ticker": "FONET",
+    "name": "Fonet Bilgi İletişim",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "FORMT",
+    "name": "Formet Metal",
+    "sector": "Metal"
+  },
+  {
+    "ticker": "FORTE",
+    "name": "Forza Yapı",
+    "sector": "İnşaat"
+  },
+  {
+    "ticker": "FRigo",
+    "name": "Frigo",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "FZLGY",
+    "name": "Fuzzy GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "GENTS",
+    "name": "Gentaş",
+    "sector": "Ağaç"
+  },
+  {
+    "ticker": "GIPTA",
+    "name": "Gıpta A.Ş.",
+    "sector": "Kağıt"
+  },
+  {
+    "ticker": "GLBMD",
+    "name": "Global Menkul",
+    "sector": "Menkul"
+  },
+  {
+    "ticker": "GLCVY",
+    "name": "Global Ceramic",
+    "sector": "Seramik"
+  },
+  {
+    "ticker": "GLYHO",
+    "name": "Global Yatırım Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "GMTAS",
+    "name": "Gimat",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "GOKNR",
+    "name": "Gökner",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "GOLTS",
+    "name": "Göltaş Çimento",
+    "sector": "Çimento"
+  },
+  {
+    "ticker": "GOODY",
+    "name": "Goodyear",
+    "sector": "Lastik"
+  },
+  {
+    "ticker": "GOZDE",
+    "name": "Gözde Girişim",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "GRSEL",
+    "name": "Gürsel Turizm",
+    "sector": "Turizm"
+  },
+  {
+    "ticker": "GRTRK",
+    "name": "Gür-Tur",
+    "sector": "Turizm"
+  },
+  {
+    "ticker": "GWIND",
+    "name": "Global Wind",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "GZNMI",
+    "name": "Gızıner Metal",
+    "sector": "Metal"
+  },
+  {
+    "ticker": "HALKO",
+    "name": "Halk Sigorta",
+    "sector": "Sigorta"
+  },
+  {
+    "ticker": "HLGYO",
+    "name": "Halk GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "INDES",
+    "name": "İndeks Bilgisayar",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "INFO",
+    "name": "İnfo Yatırım",
+    "sector": "Menkul"
+  },
+  {
+    "ticker": "INTEM",
+    "name": "İntema",
+    "sector": "Beyaz Eşya"
+  },
+  {
+    "ticker": "IPEKE",
+    "name": "İpek Doğal Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "ISBIR",
+    "name": "İşbir Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "ISDMR",
+    "name": "İş Direniş Metal",
+    "sector": "Metal"
+  },
+  {
+    "ticker": "ISFIN",
+    "name": "İş Finansal Kiralama",
+    "sector": "Finans"
+  },
+  {
+    "ticker": "ISGSY",
+    "name": "İş Gayrimenkul",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "ISKUR",
+    "name": "İşkur",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "IZENR",
+    "name": "İzenerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "IZINV",
+    "name": "İzmir İnovasyon",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "IZMDC",
+    "name": "İzmir Demir Çelik",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "IZYMO",
+    "name": "İzmir Fırça",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "JANTS",
+    "name": "Jantsa Jant",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "KLMSN",
+    "name": "Kaleseramik",
+    "sector": "Seramik"
+  },
+  {
+    "ticker": "KAPLM",
+    "name": "Kaplıca Madencilik",
+    "sector": "Madencilik"
+  },
+  {
+    "ticker": "KAREL",
+    "name": "Karel Elektrik",
+    "sector": "Elektrik"
+  },
+  {
+    "ticker": "KARTN",
+    "name": "Kartonsan",
+    "sector": "Kağıt"
+  },
+  {
+    "ticker": "KARYE",
+    "name": "Karye GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "KATMR",
+    "name": "Katmerciler Araç",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "KAYSE",
+    "name": "Kayseri Şeker",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "KBORU",
+    "name": "Kayseri Boru",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "KCAER",
+    "name": "Kocaer Çelik",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "KENT",
+    "name": "İstanbul Kolesterol",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "KERVT",
+    "name": "Kerevitaş",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "KERIM",
+    "name": "Kerim Çelik",
+    "sector": "Demir-Çelik"
+  },
+  {
+    "ticker": "KERVN",
+    "name": "Kervansaray",
+    "sector": "Turizm"
+  },
+  {
+    "ticker": "KFEIN",
+    "name": "Kafein Yazılım",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "KIMMR",
+    "name": "Kimteks",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "Kipa",
+    "name": "Kipa",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "KLGYO",
+    "name": "Kiler GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "KLRHO",
+    "name": "Kaleler Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "KLSER",
+    "name": "Kaleseramik",
+    "sector": "Seramik"
+  },
+  {
+    "ticker": "KLSYN",
+    "name": "Kalekim",
+    "sector": "Kimya"
+  },
+  {
+    "ticker": "KMPUR",
+    "name": "Koza Premium",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "KONTR",
+    "name": "Kontrat Tekstil",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "KONYA",
+    "name": "Konya Çimento",
+    "sector": "Çimento"
+  },
+  {
+    "ticker": "KONYN",
+    "name": "Konya Niğde",
+    "sector": "Çimento"
+  },
+  {
+    "ticker": "KOPOL",
+    "name": "Koç Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "KORDS",
+    "name": "Kordsa Teknik",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "KORMA",
+    "name": "Koç-Manisa",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "KOSDA",
+    "name": "Koçsa Dağıtım",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "KRVGD",
+    "name": "Kervan Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "KSTUR",
+    "name": "Kstur",
+    "sector": "Turizm"
+  },
+  {
+    "ticker": "KTSKR",
+    "name": "Kastamonu Entegre",
+    "sector": "Ağaç"
+  },
+  {
+    "ticker": "KUVVA",
+    "name": "Kuvva Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "KUYAS",
+    "name": "Kuveyt Türk",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "KZBGY",
+    "name": "Kızılbük GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "KZGYO",
+    "name": "Kızıltepe GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "LADEVICE",
+    "name": "La Device",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "LANDS",
+    "name": "Lands International",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "LOGO",
+    "name": "Logo Yazılım",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "LUKSK",
+    "name": "Lüks Kauçuk",
+    "sector": "Lastik"
+  },
+  {
+    "ticker": "MAALT",
+    "name": "Marmaris Altıntel",
+    "sector": "Turizm"
+  },
+  {
+    "ticker": "MACKO",
+    "name": "Mackolik",
+    "sector": "Medya"
+  },
+  {
+    "ticker": "MAGEN",
+    "name": "Mavi Enerya",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "MAKIM",
+    "name": "Makim Makina",
+    "sector": "Makine"
+  },
+  {
+    "ticker": "MAKTK",
+    "name": "Maktek",
+    "sector": "Makine"
+  },
+  {
+    "ticker": "MANAS",
+    "name": "Manas Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "MARKA",
+    "name": "Marka Gayrimenkul",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "MARTI",
+    "name": "Martı Otel",
+    "sector": "Turizm"
+  },
+  {
+    "ticker": "MAVI",
+    "name": "Mavi Giyim",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "MEGAP",
+    "name": "Mega Polietilen",
+    "sector": "Petrokimya"
+  },
+  {
+    "ticker": "MEKAG",
+    "name": "Mekatronik",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "MERIT",
+    "name": "Merit Hipermarket",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "MERKO",
+    "name": "Merko Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "MERYS",
+    "name": "Meryem Strateji",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "METRO",
+    "name": "Metro Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "METUR",
+    "name": "Metur İnşaat",
+    "sector": "İnşaat"
+  },
+  {
+    "ticker": "MICHS",
+    "name": "Michelin",
+    "sector": "Lastik"
+  },
+  {
+    "ticker": "MIPAZ",
+    "name": "Mipaz Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "MMCAS",
+    "name": "MMC Sanayi",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "MOBTL",
+    "name": "Mobiltel",
+    "sector": "Telekomünikasyon"
+  },
+  {
+    "ticker": "MPARK",
+    "name": "MP Park",
+    "sector": "Emlak"
+  },
+  {
+    "ticker": "MRGYO",
+    "name": "Mars GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "MRSHL",
+    "name": "Mars Hollywood",
+    "sector": "Medya"
+  },
+  {
+    "ticker": "MSGYO",
+    "name": "Mes Gayrimenkul",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "MTRKS",
+    "name": "Metro Ticari",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "MZHLD",
+    "name": "Mizra Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "NETAS",
+    "name": "Netaş Telekom",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "NIBAS",
+    "name": "Niğbaş Niğde",
+    "sector": "Çimento"
+  },
+  {
+    "ticker": "NTGAZ",
+    "name": "Naturel Gaz",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "NTHOL",
+    "name": "Net Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "NVEASN",
+    "name": "Nve Gayrimenkul",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "ONCSM",
+    "name": "Oncamobilya",
+    "sector": "Mobilya"
+  },
+  {
+    "ticker": "ORCAY",
+    "name": "Orçay Wholesale",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "ORGE",
+    "name": "Orge Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "ORMA",
+    "name": "Orma Entegre",
+    "sector": "Ağaç"
+  },
+  {
+    "ticker": "OSMEN",
+    "name": "Osmanlı Menkul",
+    "sector": "Menkul"
+  },
+  {
+    "ticker": "OSTIM",
+    "name": "Ostim Endüstri",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "OTTO",
+    "name": "Otto Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "OYAYO",
+    "name": "Oyak Yatırım",
+    "sector": "Yatırım"
+  },
+  {
+    "ticker": "OYSEN",
+    "name": "Oysen Sigorta",
+    "sector": "Sigorta"
+  },
+  {
+    "ticker": "OYYAT",
+    "name": "Oyak Yatırım Ortaklığı",
+    "sector": "Yatırım"
+  },
+  {
+    "ticker": "OZGYO",
+    "name": "Özge GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "OZRDN",
+    "name": "Özderin Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "OZRUR",
+    "name": "Öz Urfa",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "OZZEN",
+    "name": "Özgür Sanayi",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "PAGYO",
+    "name": "Pasifik Gayrimenkul",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "PAMEL",
+    "name": "Pamel Kimya",
+    "sector": "Kimya"
+  },
+  {
+    "ticker": "PAPIL",
+    "name": "Papilon Savunma",
+    "sector": "Savunma"
+  },
+  {
+    "ticker": "PARSN",
+    "name": "Parsan",
+    "sector": "Metal"
+  },
+  {
+    "ticker": "PASEU",
+    "name": "Pasifik Euro",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "PCILT",
+    "name": "PC İletişim",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "PEKGY",
+    "name": "Peker GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "PENGD",
+    "name": "Penguen Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "PENTA",
+    "name": "Penta Teknoloji",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "PETUN",
+    "name": "Petun Plastik",
+    "sector": "Plastik"
+  },
+  {
+    "ticker": "PGCOM",
+    "name": "PG Communication",
+    "sector": "Telekomünikasyon"
+  },
+  {
+    "ticker": "PKART",
+    "name": "Parfumerie",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "PKENT",
+    "name": "Pekintas",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "PLTUR",
+    "name": "Pilot Turizm",
+    "sector": "Turizm"
+  },
+  {
+    "ticker": "PNLSN",
+    "name": "Pinsan",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "PNSUT",
+    "name": "Pınar Süt",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "PNLVH",
+    "name": "Pınar Velidebey",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "POLHO",
+    "name": "Polisan Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "POLTK",
+    "name": "Politeknik Metal",
+    "sector": "Metal"
+  },
+  {
+    "ticker": "PRDGS",
+    "name": "Prodıgs",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "PRKAB",
+    "name": "Park Elektrik",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "PRKME",
+    "name": "Park Metal",
+    "sector": "Metal"
+  },
+  {
+    "ticker": "PSGYO",
+    "name": "Pasifik GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "QUAGR",
+    "name": "Qua Granite",
+    "sector": "Seramik"
+  },
+  {
+    "ticker": "RAYSG",
+    "name": "Ray Sigorta",
+    "sector": "Sigorta"
+  },
+  {
+    "ticker": "REEDR",
+    "name": "Reeder Teknoloji",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "RODRG",
+    "name": "Rodriguez",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "ROYAL",
+    "name": "Royal Halı",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "RUBNS",
+    "name": "Rubenis Tekstil",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "RYGYO",
+    "name": "Ray Gayrimenkul",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "RYSAS",
+    "name": "RYSAS",
+    "sector": "Turizm"
+  },
+  {
+    "ticker": "SAFKR",
+    "name": "SaFKR",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "SAMAT",
+    "name": "Samatlı",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "SAMNL",
+    "name": "Samanlı Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "SANKO",
+    "name": "Sanko Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "SARKY",
+    "name": "Sarkuysan",
+    "sector": "Metal"
+  },
+  {
+    "ticker": "SDTTR",
+    "name": "SDT Teknoloji",
+    "sector": "Savunma"
+  },
+  {
+    "ticker": "SEGYO",
+    "name": "Seçil GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "SEKFK",
+    "name": "Şekerpınar Faktoring",
+    "sector": "Finans"
+  },
+  {
+    "ticker": "SEKUR",
+    "name": "Sekuro Plastik",
+    "sector": "Plastik"
+  },
+  {
+    "ticker": "SELEC",
+    "name": "Selektrik",
+    "sector": "Elektrik"
+  },
+  {
+    "ticker": "SEYKM",
+    "name": "Seyitler Kimya",
+    "sector": "Kimya"
+  },
+  {
+    "ticker": "SILVR",
+    "name": "Silverampo",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "SKBNK",
+    "name": "Şekerbank",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "SKYLP",
+    "name": "Skytest",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "SKYMD",
+    "name": "Sky Mobile",
+    "sector": "Teknoloji"
+  },
+  {
+    "ticker": "SMART",
+    "name": "Smart Güneş",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "SMRTG",
+    "name": "Smart GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "SNGYO",
+    "name": "Sinpaş GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "SNICA",
+    "name": "Sinca İnşaat",
+    "sector": "İnşaat"
+  },
+  {
+    "ticker": "SNKRN",
+    "name": "Sinop Karadeniz",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "SNPAM",
+    "name": "Sinpaş",
+    "sector": "İnşaat"
+  },
+  {
+    "ticker": "SODSN",
+    "name": "Soda Sanayi",
+    "sector": "Kimya"
+  },
+  {
+    "ticker": "S🇴ZGY",
+    "name": "Soze GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "SRVGY",
+    "name": "Servette GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "SUMAS",
+    "name": "Sümaş",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "SUNTK",
+    "name": "Suntek",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "SUWEN",
+    "name": "Suwen Tekstil",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "TABGD",
+    "name": "Tab Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "TATGK",
+    "name": "Tat Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "TATKP",
+    "name": "Tat Konut",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "TBORG",
+    "name": "Turbo Metal",
+    "sector": "Metal"
+  },
+  {
+    "ticker": "TEKTU",
+    "name": "Tek-Tuğla",
+    "sector": "Çimento"
+  },
+  {
+    "ticker": "TERA",
+    "name": "Tera Yatırım",
+    "sector": "Yatırım"
+  },
+  {
+    "ticker": "TEZOL",
+    "name": "Tezmaksan",
+    "sector": "Makine"
+  },
+  {
+    "ticker": "TGSAS",
+    "name": "TGS Dış Ticaret",
+    "sector": "Dış Ticaret"
+  },
+  {
+    "ticker": "TKFEN",
+    "name": "Tekfen Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "TKNSA",
+    "name": "Teknosa",
+    "sector": "Perakende"
+  },
+  {
+    "ticker": "TLMAN",
+    "name": "Türk Loydu",
+    "sector": "Hizmet"
+  },
+  {
+    "ticker": "TMPOL",
+    "name": "Tempo Boolvar",
+    "sector": "Plastik"
+  },
+  {
+    "ticker": "TMSN",
+    "name": "Tümosan",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "TNZTP",
+    "name": "Tınaztepe Turizm",
+    "sector": "Turizm"
+  },
+  {
+    "ticker": "TRCAS",
+    "name": "Turcas Petrol",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "TRHYO",
+    "name": "Türk Hava Yolları",
+    "sector": "Ulaştırma"
+  },
+  {
+    "ticker": "TRILC",
+    "name": "Trilibis",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "TSGYO",
+    "name": "TSKB GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "TUCLK",
+    "name": "Tuclk",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "TUKAS",
+    "name": "Tukaş Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "TUREX",
+    "name": "Türkiye Eximbank",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "Turkticaret",
+    "name": "Türk Ticaret",
+    "sector": "Bankacılık"
+  },
+  {
+    "ticker": "UFUK",
+    "name": "Ufuk Farma",
+    "sector": "Sağlık"
+  },
+  {
+    "ticker": "ULUFA",
+    "name": "Ulusan Filo",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "ULUSE",
+    "name": "Ulusan Denizcilik",
+    "sector": "Denizcilik"
+  },
+  {
+    "ticker": "ULUUN",
+    "name": "Uludağ İçecek",
+    "sector": "İçecek"
+  },
+  {
+    "ticker": "ULYPN",
+    "name": "Uluzyaprak",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "UMPAS",
+    "name": "Umpaş Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "UNLU",
+    "name": "Ünlü Yatırım",
+    "sector": "Yatırım"
+  },
+  {
+    "ticker": "USAK",
+    "name": "Üsaş",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "USDTR",
+    "name": "USDTRY",
+    "sector": "Döviz"
+  },
+  {
+    "ticker": "USHAŞ",
+    "name": "Ürün Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "USRLE",
+    "name": "USR Leasing",
+    "sector": "Finans"
+  },
+  {
+    "ticker": "USTRL",
+    "name": "Üstün Tekstil",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "UZERB",
+    "name": "Üzümbaşı",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "VAKFN",
+    "name": "Vakıf Faktoring",
+    "sector": "Finans"
+  },
+  {
+    "ticker": "VAKKO",
+    "name": "Vakko",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "VAKOY",
+    "name": "Vakko Oyuncak",
+    "sector": "Oyuncak"
+  },
+  {
+    "ticker": "VBTYZ",
+    "name": "VBT Yatırım",
+    "sector": "Yatırım"
+  },
+  {
+    "ticker": "VESTEL",
+    "name": "Vestel Elektronik",
+    "sector": "Elektronik"
+  },
+  {
+    "ticker": "VEKRS",
+    "name": "Vekrs",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "VERUS",
+    "name": "Verusa Holding",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "VKFYO",
+    "name": "VKF Yatırım Ortaklığı",
+    "sector": "Yatırım"
+  },
+  {
+    "ticker": "VKGYO",
+    "name": "Vakıf GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "VKFN",
+    "name": "Vakıf Faktoring",
+    "sector": "Finans"
+  },
+  {
+    "ticker": "YOLOL",
+    "name": "Yol Oto Lit",
+    "sector": "Otomotiv"
+  },
+  {
+    "ticker": "YAYLA",
+    "name": "Yayla Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "YGGYO",
+    "name": "Yapı Gayrimenkul",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "YGYO",
+    "name": "Yeni Gimat GYO",
+    "sector": "GYO"
+  },
+  {
+    "ticker": "YHHL",
+    "name": "Yeni Holdink",
+    "sector": "Holding"
+  },
+  {
+    "ticker": "YIBAT",
+    "name": "Yibat",
+    "sector": "İnşaat"
+  },
+  {
+    "ticker": "YKSLN",
+    "name": "Yapı Kredi Sigorta",
+    "sector": "Sigorta"
+  },
+  {
+    "ticker": "YONGA",
+    "name": "Yongapark",
+    "sector": "Ağaç"
+  },
+  {
+    "ticker": "YUNSA",
+    "name": "Yunsa Polyester",
+    "sector": "Tekstil"
+  },
+  {
+    "ticker": "YYAPI",
+    "name": "YY Yapı",
+    "sector": "İnşaat"
+  },
+  {
+    "ticker": "YYLGD",
+    "name": "Yayla Agro",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "YYTGD",
+    "name": "Yeyaz Gıda",
+    "sector": "Gıda"
+  },
+  {
+    "ticker": "ZEDUR",
+    "name": "Zedur Enerji",
+    "sector": "Enerji"
+  },
+  {
+    "ticker": "ZENRN",
+    "name": "Zenrin",
+    "sector": "Sanayi"
+  },
+  {
+    "ticker": "ZRNYO",
+    "name": "Zorlu Faktoring",
+    "sector": "Finans"
+  },
+  {
+    "ticker": "ZRGYO",
+    "name": "Zorlu GYO",
+    "sector": "GYO"
+  }
+]
