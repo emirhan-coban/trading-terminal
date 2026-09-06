@@ -44,6 +44,22 @@ cd frontend && npm run dev
 
 API dokümantasyonu: `http://localhost:8000/docs`
 
+## OKX botu
+
+Bot varsayılan olarak tamamen yerel paper modunda çalışır. `POST /api/v1/bots/okx-btc-1h/start` ile başlatılır ve tarayıcı kapansa da backend çalıştığı sürece devam eder. Durum ve son kararlar `GET /api/v1/bots/okx-btc-1h` ile okunur.
+
+OKX demo hesabında emir göndermek için Demo Trading bölümünden yalnız **Trade** yetkili API anahtarı oluşturun; para çekme yetkisi vermeyin. Anahtarları yalnız backend ortamına ekleyin:
+
+```bash
+OKX_API_KEY=...
+OKX_API_SECRET=...
+OKX_API_PASSPHRASE=...
+```
+
+Ardından `POST /api/v1/bots/okx-btc-1h/start?mode=okx_demo` çağrısı kullanılır. Adaptör `x-simulated-trading: 1` başlığını zorunlu gönderir ve gerçek para modunu desteklemez.
+
+Bot ilk alıştan sonra OKX üzerinde piyasa tipi koruyucu stop oluşturur. Miktarlar OKX'in güncel `lotSz` ve `minSz` kurallarına göre aşağı yuvarlanır. Her mum için sabit müşteri emir kimliği kullanılır; bağlantı cevabı kaybolursa emir kimliğiyle sorgulanır. Demo bakiyesi her döngüde OKX ile uzlaştırılır. Günlük özsermaye kaybı %1'e ulaşırsa yeni alışlar durur. Backend yeniden başlatıldığında çalışan bot SQLite kaydından devam eder.
+
 Başlıca v3 kaynakları: `/api/v1/instruments`, `/market`, `/screeners`, `/alerts`,
 `/paper`, `/research/notes`, `/backtests` ve `/providers/health`.
 

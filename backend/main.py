@@ -4,6 +4,7 @@ from uuid import uuid4
 from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from terminal.api import router
+from terminal.bot import bot_service
 app=FastAPI(title="Global Trading Terminal API",version="3.0.0",description="Multi-asset research and paper trading API")
 app.add_middleware(CORSMiddleware,allow_origins=os.getenv("CORS_ORIGINS","http://localhost:3000").split(","),allow_credentials=True,allow_methods=["*"],allow_headers=["*"])
 @app.middleware("http")
@@ -12,3 +13,7 @@ async def correlation_id(request:Request,call_next):
 @app.get("/health")
 async def health():return {"status":"ok","version":"3.0.0"}
 app.include_router(router)
+@app.on_event("startup")
+async def resume_bots():bot_service.resume()
+@app.on_event("shutdown")
+async def stop_bot_tasks():bot_service.shutdown()

@@ -26,6 +26,11 @@ def _signals(frame:pd.DataFrame,strategy:str,fast:int,slow:int)->pd.Series:
  # Signal from bar N is executable only at bar N+1 open.
  return state.diff().fillna(0).shift(1).fillna(0)
 
+def _periods_per_year(candles:list[Candle])->float:
+ if len(candles)<2:return 252.
+ seconds=(candles[-1].open_time-candles[0].open_time).total_seconds()/max(1,len(candles)-1)
+ return 365.25*86400/seconds if seconds>0 else 252.
+
 def run(candles:list[Candle],strategy="ma_cross",fast=20,slow=50,capital=100000,costs=Costs()):
  if len(candles)<max(60,slow+2):raise ValueError("not enough candles")
  frame=pd.DataFrame([{"time":x.open_time,"open":x.open,"high":x.high,"low":x.low,"close":x.close,"volume":x.volume} for x in candles]);frame["signal"]=_signals(frame,strategy,fast,slow)
@@ -40,7 +45,7 @@ def run(candles:list[Candle],strategy="ma_cross",fast=20,slow=50,capital=100000,
   equity.append({"time":row.time.isoformat(),"value":value})
  final=equity[-1]["value"];peak=0.;max_dd=0.
  for x in equity:peak=max(peak,x["value"]);max_dd=min(max_dd,x["value"]/peak-1 if peak else 0)
- mean=sum(returns)/len(returns) if returns else 0;variance=sum((x-mean)**2 for x in returns)/(len(returns)-1) if len(returns)>1 else 0;sharpe=mean/math.sqrt(variance)*math.sqrt(252) if variance>0 else 0;downside=[x for x in returns if x<0];down_var=sum(x*x for x in downside)/len(downside) if downside else 0;sortino=mean/math.sqrt(down_var)*math.sqrt(252) if down_var else 0;years=max(len(frame)/252,1/252);cagr=(final/capital)**(1/years)-1;calmar=cagr/abs(max_dd) if max_dd else None
+ periods=_periods_per_year(candles);mean=sum(returns)/len(returns) if returns else 0;variance=sum((x-mean)**2 for x in returns)/(len(returns)-1) if len(returns)>1 else 0;sharpe=mean/math.sqrt(variance)*math.sqrt(periods) if variance>0 else 0;downside=[x for x in returns if x<0];down_var=sum(x*x for x in downside)/len(downside) if downside else 0;sortino=mean/math.sqrt(down_var)*math.sqrt(periods) if down_var else 0;years=max((candles[-1].open_time-candles[0].open_time).total_seconds()/(365.25*86400),1/periods);cagr=(final/capital)**(1/years)-1;calmar=cagr/abs(max_dd) if max_dd else None
  sells=[x for x in trades if x["side"]=="sell"];wins=[x for x in sells if x.get("pnl",0)>0];losses=[x for x in sells if x.get("pnl",0)<=0];profits=sum(x["pnl"] for x in wins);loss_total=abs(sum(x["pnl"] for x in losses))
  closed_pnl=[x.get("pnl",0) for x in sells];expectancy=sum(closed_pnl)/len(closed_pnl) if closed_pnl else 0;turnover=sum(x["price"]*x["quantity"] for x in trades)/capital
  underwater=[{"time":x["time"],"drawdown_pct":round((x["value"]/max(y["value"] for y in equity[:n+1])-1)*100,3)} for n,x in enumerate(equity)]

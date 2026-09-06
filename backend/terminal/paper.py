@@ -139,14 +139,20 @@ class PaperBroker:
         for order in list(self.orders[user]):
             if order.instrument_id != quote.instrument_id or order.status not in {"accepted", "partially_filled"}:
                 continue
+            stop_triggered = order.order_type == "stop_limit" and order.stop_triggered
+            if order.order_type == "stop_limit" and not stop_triggered:
+                stop_triggered=(order.side == "buy" and quote.price >= order.stop_price) or (order.side == "sell" and quote.price <= order.stop_price)
+                order.stop_triggered=stop_triggered
             hit = (
                 order.order_type == "limit" and ((order.side == "buy" and quote.price <= order.limit_price) or
                                                    (order.side == "sell" and quote.price >= order.limit_price))
             ) or (
-                order.order_type in {"stop", "stop_limit"} and
+                order.order_type == "stop" and
                 ((order.side == "buy" and quote.price >= order.stop_price) or
                  (order.side == "sell" and quote.price <= order.stop_price))
-            )
+            ) or (order.order_type == "stop_limit" and stop_triggered and
+                  ((order.side == "buy" and quote.price <= order.limit_price) or
+                   (order.side == "sell" and quote.price >= order.limit_price)))
             if not hit:
                 continue
             remaining = order.quantity - order.filled_quantity

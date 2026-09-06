@@ -11,12 +11,12 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const res = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}`);
+    const res = await fetch(`${API_BASE}/api/v1/instruments/search?q=${encodeURIComponent(q)}`);
     if (!res.ok) {
       return NextResponse.json({ results: [] }, { status: 502 });
     }
     const data = await res.json();
-    return NextResponse.json(data);
+    return NextResponse.json({ results: data.data ?? [] });
   } catch {
     return NextResponse.json({ results: [] }, { status: 502 });
   }

@@ -76,7 +76,7 @@ class PaperOrder(BaseModel):
     order_type:str; quantity:float; status:Literal["new","accepted","partially_filled","filled","cancelled","rejected"]
     limit_price:float|None=None; stop_price:float|None=None; fill_price:float|None=None; filled_quantity:float=0
     commission:float=0; realized_pnl:float|None=None; parent_id:UUID|None=None; oco_group:UUID|None=None; rejection_reason:str|None=None; created_at:datetime=Field(default_factory=utcnow); updated_at:datetime=Field(default_factory=utcnow)
-    mae:float|None=None; mfe:float|None=None
+    mae:float|None=None; mfe:float|None=None; stop_triggered:bool=False
 class WorkspaceIn(BaseModel):
     name:str=Field(min_length=1,max_length=80); layout:dict[str,Any]; is_default:bool=False
 class Workspace(WorkspaceIn):

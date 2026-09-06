@@ -22,6 +22,7 @@ from .market_stream import DepthBook,binance_events,depth_snapshot
 from .brokers import live_broker
 from .workspaces import workspaces
 from .calendar import events_for
+from .bot import BotConfig,bot_service
 from .portfolio_performance import performance,stress,time_weighted_return
 from .filings import sec_filings
 router=APIRouter(prefix="/api/v1")
@@ -317,6 +318,23 @@ async def journal_analytics(authorization:str|None=Header(default=None)):
  return ApiResponse(data=summarize_orders(data),meta=ApiMeta(source="journal-analytics",freshness=Freshness.live))
 @router.get("/brokers/capabilities",response_model=ApiResponse)
 async def broker_capabilities():return ApiResponse(data={"adapter":live_broker.name,**live_broker.capabilities.__dict__},meta=ApiMeta(source="broker-router",freshness=Freshness.live))
+@router.post("/bots/{bot_id}/start",response_model=ApiResponse)
+async def start_bot(bot_id:str,mode:str="paper",authorization:str|None=Header(default=None)):
+ await uid(authorization)
+ try:data=bot_service.start(bot_id,BotConfig(mode=mode))
+ except RuntimeError as error:raise HTTPException(409,detail={"code":str(error),"message":"OKX demo anahtarları yapılandırılmamış"}) from error
+ return ApiResponse(data=data,meta=ApiMeta(source="bot-engine",freshness=Freshness.live))
+@router.post("/bots/{bot_id}/stop",response_model=ApiResponse)
+async def stop_bot(bot_id:str,authorization:str|None=Header(default=None)):
+ await uid(authorization)
+ return ApiResponse(data=bot_service.stop(bot_id),meta=ApiMeta(source="bot-engine",freshness=Freshness.live))
+@router.get("/bots/{bot_id}",response_model=ApiResponse)
+async def bot_status(bot_id:str,authorization:str|None=Header(default=None)):
+ await uid(authorization)
+ data=bot_service.store.state(bot_id)
+ if not data:raise HTTPException(404,detail={"code":"BOT_NOT_FOUND","message":"Bot bulunamadı"})
+ data["events"]=bot_service.store.events(bot_id,50)
+ return ApiResponse(data=data,meta=ApiMeta(source="bot-engine",freshness=Freshness.live))
 @router.websocket("/ws/market/{instrument_id:path}")
 async def stream(ws:WebSocket,instrument_id:str,token:str|None=None):
  await ws.accept()

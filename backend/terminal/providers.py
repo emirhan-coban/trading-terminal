@@ -1,4 +1,4 @@
-import asyncio,json
+import asyncio,json,os
 from abc import ABC,abstractmethod
 from datetime import datetime,timezone
 from urllib.request import Request,urlopen
@@ -17,10 +17,18 @@ class MarketDataProvider(ABC):
  async def statements(self,instrument,frequency):raise ValueError("Statements unavailable")
  async def actions(self,instrument):return []
 class BinanceProvider(MarketDataProvider):
- name="binance"; base="https://api.binance.com/api/v3"
- @staticmethod
- def get(path):
-  with urlopen(Request(BinanceProvider.base+path,headers={"User-Agent":"GlobalTerminal/1.0"}),timeout=8) as r:return json.loads(r.read())
+ name="binance"; bases=("https://data-api.binance.vision/api/v3","https://api.binance.com/api/v3")
+ @classmethod
+ def get(cls,path):
+  last_error=None
+  for base in cls.bases:
+   try:
+    with urlopen(Request(base+path,headers={"User-Agent":"GlobalTerminal/1.0"}),timeout=8) as r:return json.loads(r.read())
+   except Exception as error:last_error=error
+  raise last_error or RuntimeError("Binance unavailable")
+ async def health(self):
+  try:await asyncio.to_thread(self.get,"/ping");return {"provider":self.name,"status":"ok","checked_at":datetime.now(timezone.utc).isoformat()}
+  except Exception as error:return {"provider":self.name,"status":"unavailable","error":type(error).__name__,"checked_at":datetime.now(timezone.utc).isoformat()}
  async def quote(self,i):
   d=await asyncio.to_thread(self.get,f"/ticker/24hr?symbol={i.provider_symbols['binance']}")
   return Quote(instrument_id=i.id,price=float(d["lastPrice"]),bid=float(d["bidPrice"]),ask=float(d["askPrice"]),change=float(d["priceChange"]),change_pct=float(d["priceChangePercent"]),volume=float(d["quoteVolume"]),source=self.name,freshness=Freshness.live,as_of=datetime.now(timezone.utc),market_status="open")
@@ -35,6 +43,46 @@ class BinanceProvider(MarketDataProvider):
    with urlopen(Request(f"https://api.coingecko.com/api/v3/coins/{coin}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false",headers={"User-Agent":"GlobalTerminal/1.0"}),timeout=10) as r:return json.loads(r.read())
   d=await asyncio.to_thread(fetch);m=d.get("market_data",{});quote=(i.quote_currency or "usd").lower()
   return Fundamentals(instrument_id=i.id,source="coingecko",freshness=Freshness.delayed,as_of=datetime.now(timezone.utc),currency=i.quote_currency,market_cap=m.get("market_cap",{}).get(quote),fully_diluted_valuation=m.get("fully_diluted_valuation",{}).get(quote),circulating_supply=m.get("circulating_supply"),total_supply=m.get("total_supply"),fifty_two_week_high=m.get("ath",{}).get(quote),fifty_two_week_low=m.get("atl",{}).get(quote))
+class OkxProvider(MarketDataProvider):
+ name="okx"
+ @classmethod
+ def get(cls,path):
+  last_error=None
+  regional=os.getenv("OKX_API_BASE_URL","").rstrip("/")
+  bases=tuple(dict.fromkeys(x for x in (regional,"https://www.okx.com","https://openapi.okx.com") if x))
+  for base in bases:
+   try:
+    headers={"User-Agent":"NEXUS/1.0"}
+    if os.getenv("OKX_SIMULATED_TRADING","1")=="1":headers["x-simulated-trading"]="1"
+    with urlopen(Request(base+path,headers=headers),timeout=5) as r:return json.loads(r.read())
+   except Exception as error:last_error=error
+  raise last_error or RuntimeError("OKX unavailable")
+ @staticmethod
+ def _data(payload):
+  if str(payload.get("code","0"))!="0":raise ValueError(payload.get("msg") or "OKX request failed")
+  return payload.get("data",[])
+ async def health(self):
+  try:await asyncio.to_thread(self.get,"/api/v5/public/time");return {"provider":self.name,"status":"ok","checked_at":datetime.now(timezone.utc).isoformat()}
+  except Exception as error:return {"provider":self.name,"status":"unavailable","error":type(error).__name__,"checked_at":datetime.now(timezone.utc).isoformat()}
+ async def quote(self,i):
+  rows=self._data(await asyncio.to_thread(self.get,f"/api/v5/market/ticker?instId={i.provider_symbols['okx']}"))
+  if not rows:raise ValueError("No OKX ticker")
+  d=rows[0];last=float(d["last"]);open24=float(d["open24h"] or last)
+  return Quote(instrument_id=i.id,price=last,bid=float(d["bidPx"]) if d.get("bidPx") else None,ask=float(d["askPx"]) if d.get("askPx") else None,change=last-open24,change_pct=(last/open24-1)*100 if open24 else None,volume=float(d.get("volCcy24h") or 0),source=self.name,freshness=Freshness.live,as_of=datetime.fromtimestamp(int(d["ts"])/1000,tz=timezone.utc),market_status="open")
+ async def candles(self,i,timeframe,limit):
+  bars={"1m":"1m","3m":"3m","5m":"5m","15m":"15m","30m":"30m","1h":"1H","4h":"4H","1d":"1D","1wk":"1W","1mo":"1M"}
+  if timeframe not in bars:raise ValueError("Unsupported timeframe")
+  rows=[];after=None
+  while len(rows)<limit:
+   count=min(300,limit-len(rows));path=f"/api/v5/market/history-candles?instId={i.provider_symbols['okx']}&bar={bars[timeframe]}&limit={count}"+(f"&after={after}" if after else "")
+   page=self._data(await asyncio.to_thread(self.get,path))
+   if not page:break
+   rows.extend(page);oldest=min(int(r[0]) for r in page)
+   if after==str(oldest) or len(page)<count:break
+   after=str(oldest)
+  unique={int(r[0]):r for r in rows}
+  return [Candle(instrument_id=i.id,timeframe=timeframe,open_time=datetime.fromtimestamp(int(r[0])/1000,tz=timezone.utc),open=float(r[1]),high=float(r[2]),low=float(r[3]),close=float(r[4]),volume=float(r[5]),source=self.name,freshness=Freshness.live,quality_flags=[] if len(r)<9 or r[8]=="1" else ["open_candle"]) for r in sorted(unique.values(),key=lambda x:int(x[0]))][-limit:]
+
 class YahooProvider(MarketDataProvider):
  name="yfinance"; intervals={"1m":"1m","5m":"5m","15m":"15m","30m":"30m","1h":"1h","1d":"1d","1wk":"1wk","1mo":"1mo"}
  async def history(self,i,tf):
@@ -86,9 +134,9 @@ class YahooProvider(MarketDataProvider):
    if float(row.get("Stock Splits",0) or 0)>0:out.append(CorporateAction(instrument_id=i.id,action_type="split",event_date=dt,value=float(row["Stock Splits"]),title="Hisse bölünmesi",source=self.name))
   return sorted(out,key=lambda x:x.event_date,reverse=True)
 class ProviderRouter:
- def __init__(self):self.providers={"binance":BinanceProvider(),"yfinance":YahooProvider()}
+ def __init__(self):self.providers={"binance":BinanceProvider(),"okx":OkxProvider(),"yfinance":YahooProvider()}
  def for_instrument(self,i):
-  for n in ("binance","yfinance"):
+  for n in ("okx","binance","yfinance"):
    if n in i.provider_symbols:return self.providers[n]
   raise ValueError("No provider")
 providers=ProviderRouter()

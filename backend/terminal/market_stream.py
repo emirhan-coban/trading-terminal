@@ -28,16 +28,17 @@ class DepthBook:
 
 async def binance_events(instrument,interval="1m"):
  import websockets
- symbol=instrument.provider_symbols["binance"].lower();streams=f"{symbol}@trade/{symbol}@kline_{interval}/{symbol}@depth@100ms";url=f"wss://stream.binance.com:9443/stream?streams={streams}";backoff=1
+ symbol=instrument.provider_symbols["binance"].lower();streams=f"{symbol}@trade/{symbol}@kline_{interval}/{symbol}@depth@100ms";urls=(f"wss://stream.binance.vision/stream?streams={streams}",f"wss://stream.binance.com:9443/stream?streams={streams}");backoff=1;endpoint=0
  while True:
   try:
-   async with websockets.connect(url,ping_interval=20,ping_timeout=20,close_timeout=5) as ws:
+   async with websockets.connect(urls[endpoint],ping_interval=20,ping_timeout=20,close_timeout=5) as ws:
     backoff=1
     async for raw in ws:
      event=normalize_binance(json.loads(raw),instrument.id)
      if event:yield event
   except asyncio.CancelledError:raise
   except Exception:
+   endpoint=(endpoint+1)%len(urls)
    await asyncio.sleep(backoff);backoff=min(backoff*2,30)
 
 async def depth_snapshot(instrument):

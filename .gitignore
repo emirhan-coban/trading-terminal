@@ -21,6 +21,7 @@ out/
 
 # OS
 .DS_Store
+backend/data/
 Thumbs.db
 
 # IDE

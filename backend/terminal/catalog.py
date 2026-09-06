@@ -3,6 +3,8 @@ from pathlib import Path
 from .models import AssetClass, Instrument
 
 CORE=[
+ Instrument(id="crypto:okx:btc-usdt",symbol="BTC-USDT",display_symbol="BTC/USDT",name="Bitcoin",asset_class=AssetClass.crypto,exchange="OKX",currency="BTC",quote_currency="USDT",provider_symbols={"okx":"BTC-USDT","coingecko":"bitcoin"},lot_size=.00000001,data_capabilities=["quote","candles"]),
+ Instrument(id="crypto:okx:eth-usdt",symbol="ETH-USDT",display_symbol="ETH/USDT",name="Ethereum",asset_class=AssetClass.crypto,exchange="OKX",currency="ETH",quote_currency="USDT",provider_symbols={"okx":"ETH-USDT","coingecko":"ethereum"},lot_size=.000001,data_capabilities=["quote","candles"]),
  Instrument(id="crypto:binance:btcusdt",symbol="BTCUSDT",display_symbol="BTC/USDT",name="Bitcoin",asset_class=AssetClass.crypto,exchange="BINANCE",currency="BTC",quote_currency="USDT",provider_symbols={"binance":"BTCUSDT","coingecko":"bitcoin"},lot_size=.00001,data_capabilities=["quote","candles","trades","depth"]),
  Instrument(id="crypto:binance:ethusdt",symbol="ETHUSDT",display_symbol="ETH/USDT",name="Ethereum",asset_class=AssetClass.crypto,exchange="BINANCE",currency="ETH",quote_currency="USDT",provider_symbols={"binance":"ETHUSDT","coingecko":"ethereum"},lot_size=.0001,data_capabilities=["quote","candles","trades","depth"]),
  Instrument(id="stock:xnas:aapl",symbol="AAPL",display_symbol="AAPL",name="Apple Inc.",asset_class=AssetClass.stock,exchange="NASDAQ",mic="XNAS",country="US",currency="USD",provider_symbols={"yfinance":"AAPL","sec_cik":"0000320193"},timezone="America/New_York",trading_calendar="XNYS",data_capabilities=["quote","candles","fundamentals","filings"]),
