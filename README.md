@@ -1,4 +1,13 @@
-# NEXUS — Global Multi-Asset Trading Terminal v3
+# NEXUS — Global Multi-Asset Trading Terminal
+
+Research and **paper-trading** terminal for crypto, US stocks, BIST stocks and indices. Data freshness and delay of every free data source is exposed in each API response. It never sends real orders.
+
+**Stack:** Python, FastAPI, TypeScript frontend, Docker Compose, SQLite
+
+**Highlights:** canonical `instrument_id` scheme, Binance live crypto + delayed yfinance adapters, websocket quote stream, paper orders with commission, slippage, buying-power and stale-data guards, edge-triggered price/volume alerts. Details below (Turkish).
+
+---
+
 
 Kripto, ABD hisseleri, BIST hisseleri ve endeksler için araştırma ve paper-trading terminali. Ücretsiz veri kaynaklarının gecikme ve güncellik durumu her API yanıtında açıkça taşınır. Gerçek emir göndermez.
 
