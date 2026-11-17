@@ -1,2 +1,3 @@
-import BotDashboard from '@/components/BotDashboard';
-export default function Home(){return <BotDashboard/>}
+import './terminal.css';
+import TerminalWorkspace from '@/components/TerminalWorkspace';
+export default function Home(){return <TerminalWorkspace/>}

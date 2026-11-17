@@ -62,7 +62,7 @@ def walk_forward(candles:list[Candle],strategy="ma_cross",train_bars=252,test_ba
   if not candidates:break
   _,fast,slow=max(candidates);result=run(test,strategy,fast,slow);windows.append({"train_start":train[0].open_time,"test_start":test[0].open_time,"test_end":test[-1].open_time,"selected":{"fast":fast,"slow":slow},"out_of_sample_return_pct":result["return_pct"],"out_of_sample_sharpe":result["sharpe"]});cursor+=test_bars
  returns=[x["out_of_sample_return_pct"] for x in windows];positive=sum(x>0 for x in returns)
- return {"strategy":strategy,"windows":windows,"window_count":len(windows),"positive_window_pct":round(positive/len(windows)*100,2) if windows else None,"aggregate_oos_return_pct":round(sum(returns),2),"warning":"Parameter selection is exploratory; validate on unseen data."}
+ return {"strategy":strategy,"windows":windows,"window_count":len(windows),"positive_window_pct":round(positive/len(windows)*100,2) if windows else None,"aggregate_oos_return_pct":round((math.prod(1+x/100 for x in returns)-1)*100,2),"warning":"Parameter selection is exploratory; validate on unseen data."}
 
 def optimize(candles:list[Candle],strategy="ma_cross",grid=None,split=.7):
  cut=max(60,int(len(candles)*split));train,test=candles[:cut],candles[cut:];grid=grid or [(5,20),(10,30),(20,50),(30,100)];rows=[]

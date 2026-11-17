@@ -1,0 +1,24 @@
+# Render Blueprint: free web service for the API (Docker).
+# Frankfurt is required in practice: Binance rejects some regions (HTTP 451).
+services:
+  - type: web
+    name: nexus-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile.backend
+    dockerContext: .
+    region: frankfurt
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ALLOW_GUEST
+        value: "true"
+      - key: BOT_CONTROL
+        value: "false"
+      - key: PERSISTENCE
+        value: memory
+      - key: CORS_ORIGINS
+        sync: false   # set to your frontend URL, e.g. https://nexus-terminal.vercel.app
+      - key: REDIS_URL
+        sync: false   # optional (Upstash); leave empty to use in-process cache
+      - key: GEMINI_API_KEY
+        sync: false   # optional

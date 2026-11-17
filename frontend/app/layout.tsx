@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-export const metadata:Metadata={title:'Nexus Bot',description:'Sade OKX paper trading botu'};
-export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="tr"><body>{children}</body></html>}
+import LocaleTranslator from '@/components/LocaleTranslator';
+import BackendStatus from '@/components/BackendStatus';
+export const metadata:Metadata={title:'NEXUS — Multi-Asset Trading Terminal',description:'Research and paper-trading terminal for crypto, US stocks and BIST. Paper trading only, not investment advice.'};
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="tr"><body><LocaleTranslator/><BackendStatus/>{children}</body></html>}

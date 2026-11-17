@@ -1,4 +1,5 @@
 import {supabase} from '@/lib/supabase';
+import {isSupabaseConfigured} from '@/components/ConfigWarning';
 
 export type Freshness='live'|'delayed'|'stale'|'unavailable';
 export type Instrument={id:string;symbol:string;display_symbol:string;name:string;asset_class:string;exchange:string;currency:string;quote_currency?:string;price_precision:number;data_capabilities:string[]};
@@ -20,13 +21,26 @@ export type DataQuality={status:string;instrument_count:number;capability_covera
 export type BotStatus={bot_id:string;config:string;status:string;last_candle:string|null;position:number;entry_price:number|null;cash:number;heartbeat:string|null;error:string|null;events?:{id:number;kind:string;payload:string;created_at:string}[]};
 type Envelope<T>={data:T;meta:{source:string;freshness:Freshness;as_of:string;currency?:string}};
 const BASE=process.env.NEXT_PUBLIC_API_URL||'http://localhost:8000';
+function guestId(){
+ try{
+  let id=localStorage.getItem('nexus-guest-id');
+  if(!id){id=crypto.randomUUID();localStorage.setItem('nexus-guest-id',id)}
+  return id
+ }catch{return null}
+}
+/** Supabase JWT when signed in, otherwise `guest:<id>` so each visitor gets an isolated paper account. */
 export async function accessToken(){
- const {data}=await supabase.auth.getSession();
- return data.session?.access_token||null;
+ if(isSupabaseConfigured()){
+  const {data}=await supabase.auth.getSession();
+  if(data.session?.access_token)return data.session.access_token
+ }
+ const id=guestId();
+ return id?`guest:${id}`:null
 }
 async function request<T>(path:string,init?:RequestInit):Promise<Envelope<T>>{
  const token=await accessToken();
- const headers:HeadersInit={'Content-Type':'application/json',...(token?{Authorization:`Bearer ${token}`}:{}),...(init?.headers||{})};
+ const auth=token?.startsWith('guest:')?`Guest ${token.slice(6)}`:token?`Bearer ${token}`:null;
+ const headers:HeadersInit={'Content-Type':'application/json',...(auth?{Authorization:auth}:{}),...(init?.headers||{})};
  const r=await fetch(`${BASE}/api/v1${path}`,{...init,headers});
  if(!r.ok){const body=await r.json().catch(()=>null);throw new Error(body?.detail?.message||`API ${r.status}`)}
  return r.json()

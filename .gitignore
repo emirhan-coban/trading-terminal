@@ -38,3 +38,6 @@ npm-debug.log*
 supabase/.temp/
 frontend/test-results/
 frontend/playwright-report/
+
+# Local bot database
+backend/data/

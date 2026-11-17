@@ -1,92 +1,82 @@
 # NEXUS — Global Multi-Asset Trading Terminal
 
-Research and **paper-trading** terminal for crypto, US stocks, BIST stocks and indices. Data freshness and delay of every free data source is exposed in each API response. It never sends real orders.
+A research and **paper-trading** terminal for crypto, US stocks, BIST stocks and indices. Every API response carries the source and freshness (`live | delayed | stale | unavailable`) of its data, so free, delayed feeds are never presented as real-time. **It never sends real-money orders.**
 
-**Stack:** Python, FastAPI, TypeScript frontend, Docker Compose, SQLite
+> Paper trading and research only. Nothing here is investment advice.
 
-**Highlights:** canonical `instrument_id` scheme, Binance live crypto + delayed yfinance adapters, websocket quote stream, paper orders with commission, slippage, buying-power and stale-data guards, edge-triggered price/volume alerts. Details below (Turkish).
+**Live demo:** _add your URL here_ · **API docs:** `<api-url>/docs`
+
+**Stack:** Python 3.12 · FastAPI · pandas · Next.js 16 / React 19 · TypeScript · lightweight-charts · Redis (optional) · Supabase (optional) · Docker Compose · GitHub Actions
+
+## Highlights
+
+- **Canonical instrument IDs** (`crypto:binance:btcusdt`, `stock:xnas:aapl`, `stock:xist:thyao`) shared by quotes, alerts, orders, notes and backtests.
+- **Provider adapters** with honest freshness: Binance (live crypto, REST + websocket trade/kline/depth with reconnect/backoff and depth-sequence resync) and yfinance (delayed stocks/indices). A Redis quote cache serves stale data when a provider fails.
+- **Paper broker:** market, limit, stop, stop-limit, bracket and OCO orders with commission, slippage, buying-power and stale-data guards; fills, cash ledger and audit events.
+- **Backtest lab:** MA cross, RSI reversion, breakout, momentum and VWAP reclaim; next-bar-open execution, costs, in/out-of-sample optimisation, walk-forward, overfitting warnings, CAGR / Sharpe / Sortino / Calmar / drawdown / expectancy / profit factor.
+- **Research:** valuation and growth fundamentals, financial statements, corporate actions, sourced news, SEC/KAP filings, optional Gemini summary that only uses supplied data (deterministic fallback otherwise).
+- **Screener + alerts:** RSI, relative volume, momentum, volatility, trend; saved screens; edge-triggered price/volume/indicator alerts.
+- **Portfolio analytics:** multi-currency, missing prices are never counted as zero; volatility, drawdown, VaR, Sharpe, beta, correlation, stress tests.
+- **Fail-closed broker layer:** live-money trading is intentionally unsupported; an OKX *demo* bot (`x-simulated-trading: 1` enforced) and a local paper bot are available.
+- Dense desktop workspace with command palette, TR/EN switch and a mobile layout.
+
+## Architecture
+
+```
+frontend (Next.js)  ──REST/WS──►  backend (FastAPI, /api/v1)
+  TerminalWorkspace                 terminal/api.py  (single router)
+  lib/terminal-api.ts               ├─ providers.py   Binance / yfinance adapters
+                                    ├─ paper.py       paper broker
+                                    ├─ backtest_engine.py, screener.py, alerts.py, ...
+                                    ├─ cache.py       Redis or in-process quote cache
+                                    └─ persistence.py memory | Supabase
+```
+
+Identity modes (`backend/terminal/auth.py`):
+
+| Mode | When | Who owns state |
+|---|---|---|
+| Local | default, no auth header | one shared `local-user` |
+| Guest | `ALLOW_GUEST=true`, `Authorization: Guest <id>` | one isolated in-memory account per browser |
+| Supabase | `Authorization: Bearer <jwt>` (`REQUIRE_AUTH=true` makes it mandatory) | per-user rows with RLS (`backend/schema_v3.sql`) |
+
+## Run locally
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
+cd backend && ../.venv/bin/python -m uvicorn main:app --reload --port 8000   # http://localhost:8000/docs
+cd frontend && npm ci && npm run dev                                        # http://localhost:3000
+```
+
+Everything works without Supabase, Redis or API keys. Copy `backend/.env.example` and `frontend/.env.example` to customise. Full stack: `docker compose up`.
+
+## Tests
+
+```bash
+.venv/bin/python -m pytest backend/tests -q      # 52 backend tests
+cd frontend && npm test && npm run lint && npm run build
+cd frontend && npx playwright test               # e2e (needs `npm run build` first)
+```
+
+CI (`.github/workflows/ci.yml`) runs pytest, eslint, vitest and `next build`.
+
+## Deploy (free tier)
+
+1. **API → Render** (Docker, Frankfurt region — Binance rejects some regions with HTTP 451). Create a Blueprint from `render.yaml`, then set `CORS_ORIGINS` to the frontend URL. Public demo defaults: `ALLOW_GUEST=true`, `BOT_CONTROL=false`, `PERSISTENCE=memory`.
+2. **Frontend → Vercel**: root directory `frontend`, env `NEXT_PUBLIC_API_URL=https://<your-render-service>.onrender.com`. `NEXT_PUBLIC_*` values are inlined at build time, so redeploy after changing them.
+3. **Optional**: `REDIS_URL` (Upstash free) for a shared quote cache; Supabase (`PERSISTENCE=supabase`, run `backend/schema_v3.sql`, set `NEXT_PUBLIC_SUPABASE_*` and `REQUIRE_AUTH=true`) for real accounts.
+4. **Free domain**: the `*.vercel.app` URL works as-is; for a nicer name, request `<name>.is-a.dev` via a pull request to the `is-a-dev/register` repository and add it as a custom domain in Vercel.
+
+Free-tier caveats: Render sleeps after ~15 minutes idle (the UI shows a "backend is waking up" banner and the first request takes ~30–60 s); in-memory guest accounts reset on restart; the global OKX bot is disabled on the public demo.
+
+## Known limitations
+
+See `TRADING_BOT_PLAN.md` for the audit of the paper engine (open-order reservations, restart recovery, multi-asset margin) and the bot roadmap.
 
 ---
 
+## Türkçe özet
 
-Kripto, ABD hisseleri, BIST hisseleri ve endeksler için araştırma ve paper-trading terminali. Ücretsiz veri kaynaklarının gecikme ve güncellik durumu her API yanıtında açıkça taşınır. Gerçek emir göndermez.
+Kripto, ABD hisseleri, BIST hisseleri ve endeksler için araştırma ve paper-trading terminali. Ücretsiz veri kaynaklarının gecikme ve güncellik durumu her API yanıtında açıkça taşınır. Gerçek emir göndermez. Yerel çalıştırma ve test komutları yukarıdadır; API dokümantasyonu `http://localhost:8000/docs` adresindedir.
 
-## Çalışan v3 çekirdeği
-
-- Kanonik `instrument_id`: `crypto:binance:btcusdt`, `stock:xnas:aapl`, `stock:xist:thyao`
-- Binance canlı kripto ve yfinance gecikmeli hisse/endeks adaptörleri
-- `/api/v1` altında arama, quote, gerçek timeframe mumları, provider health ve websocket quote akışı
-- Komisyon, kayma, buying power ve stale-data korumalı paper market emirleri
-- Edge-triggered fiyat/değişim/hacim alarmları ve alarm olay geçmişi
-- Çoklu varlık screener API'si ve enstrümana bağlı araştırma/journal notları
-- Bekleyen limit/stop emirlerinde quote ile tetikleme ve emir iptali
-- Sonraki bar açılışında işlem yapan maliyetli backtest motoru
-- Profesyonel yoğun masaüstü çalışma alanı, komut paleti ve mobil uyarlama
-- Supabase için kullanıcı izolasyonlu v3 şeması ve RLS politikaları
-- Supabase token doğrulama katmanı (`REQUIRE_AUTH=true` ile zorunlu)
-- Redis quote cache, sağlayıcı kesintisinde stale fallback ve arka plan quote worker'ı
-- Supabase repository ile paper hesap/emir/pozisyon, alarm ve journal kalıcılığı
-- Hisseler için değerleme/büyüme/kârlılık özeti, kripto için piyasa değeri/FDV/arz araştırma paneli
-- Çoklu varlık temel veri karşılaştırma API'si ve SEC/KAP belge geçişleri
-- Çeyreklik/yıllık gelir tablosu, bilanço ve nakit akışı özetleri
-- Temettü/split kurumsal aksiyonları ve enstrüman bazlı kaynaklı haber akışı
-- Eksik fiyat/kur bilgisini sıfır saymayan çoklu para birimli yatırım portföyü
-- RSI, göreli hacim, momentum, volatilite ve trend metrikli gelişmiş screener
-- Kaydedilebilir taramalar ve indikatör tabanlı edge-triggered alarmlar
-- Portföy volatilite, drawdown, VaR, Sharpe, beta ve korelasyon analitiği
-- Veri dışında iddia üretmeyen Gemini özeti ve deterministik AI fallback'i
-- Tarayıcı ve portföy panellerinden enstrüman → araştırma → alarm → paper trade geçişi
-- MA/EMA, RSI reversion, breakout, momentum ve VWAP reclaim stratejileri
-- In/out-of-sample optimizasyon, walk-forward ve overfitting uyarıları
-- CAGR, Sharpe, Sortino, Calmar, drawdown, expectancy, profit factor ve turnover
-- Paper işlem günlüğü için gerçekleşen K/Z, maliyet ve enstrüman bazlı performans analitiği
-- Binance trade/kline/depth websocket akışı, reconnect/backoff ve depth sequence resync
-- ETF, forex ve emtia kanonik kimlikleri; ücretli veri ve broker adaptör sözleşmeleri
-- Gerçek para emirlerini fail-closed tutan broker capability katmanı
-
-## Yerel geliştirme
-
-```bash
-cd backend && ../.venv/bin/python -m uvicorn main:app --reload --port 8000
-cd frontend && npm run dev
-```
-
-API dokümantasyonu: `http://localhost:8000/docs`
-
-## OKX botu
-
-Bot varsayılan olarak tamamen yerel paper modunda çalışır. `POST /api/v1/bots/okx-btc-1h/start` ile başlatılır ve tarayıcı kapansa da backend çalıştığı sürece devam eder. Durum ve son kararlar `GET /api/v1/bots/okx-btc-1h` ile okunur.
-
-OKX demo hesabında emir göndermek için Demo Trading bölümünden yalnız **Trade** yetkili API anahtarı oluşturun; para çekme yetkisi vermeyin. Anahtarları yalnız backend ortamına ekleyin:
-
-```bash
-OKX_API_KEY=...
-OKX_API_SECRET=...
-OKX_API_PASSPHRASE=...
-```
-
-Ardından `POST /api/v1/bots/okx-btc-1h/start?mode=okx_demo` çağrısı kullanılır. Adaptör `x-simulated-trading: 1` başlığını zorunlu gönderir ve gerçek para modunu desteklemez.
-
-Bot ilk alıştan sonra OKX üzerinde piyasa tipi koruyucu stop oluşturur. Miktarlar OKX'in güncel `lotSz` ve `minSz` kurallarına göre aşağı yuvarlanır. Her mum için sabit müşteri emir kimliği kullanılır; bağlantı cevabı kaybolursa emir kimliğiyle sorgulanır. Demo bakiyesi her döngüde OKX ile uzlaştırılır. Günlük özsermaye kaybı %1'e ulaşırsa yeni alışlar durur. Backend yeniden başlatıldığında çalışan bot SQLite kaydından devam eder.
-
-Başlıca v3 kaynakları: `/api/v1/instruments`, `/market`, `/screeners`, `/alerts`,
-`/paper`, `/research/notes`, `/backtests` ve `/providers/health`.
-
-## Doğrulama
-
-```bash
-./.venv/bin/python -m pytest backend/tests -q
-cd frontend && npm test && npm run lint && npm run build
-```
-
-## Veri ve güvenlik
-
-- Kripto: Binance public REST; `live` olarak etiketlenir.
-- Hisse/endeks: yfinance; `delayed` olarak etiketlenir ve day-trading SLA'sı yoktur.
-- `backend/schema_v3.sql` yeni kurulum şemasıdır. Uygulamadan önce Supabase projesinde gözden geçirilmelidir.
-- Yerel geliştirmedeki paper kayıtları process belleğindedir; yeniden başlatmada silinir. Şema kalıcı paper emirleri için hazırdır.
-- Production auth bağlantısında Supabase JWT doğrulaması zorunludur; local API kullanıcı kimliğini geliştirme kullanıcısına sabitler.
-- Production ortamında `REQUIRE_AUTH=true` kullanılmalıdır; anonim local mod yalnız geliştirme içindir.
-- Kalıcı çalışma için `PERSISTENCE=supabase` ve `backend/schema_v3.sql` şeması kullanılır.
-
-Eski v2 modülleri geçiş referansı olarak `backend/` altında durur ancak v3 API tarafından kullanılmaz.
+OKX botu varsayılan olarak yerel paper modunda çalışır (`POST /api/v1/bots/okx-btc-1h/start`). OKX demo hesabı için yalnız **Trade** yetkili bir API anahtarı oluşturun, para çekme yetkisi vermeyin ve anahtarları yalnız backend ortamına (`OKX_API_KEY`, `OKX_API_SECRET`, `OKX_API_PASSPHRASE`) ekleyin; ardından `?mode=okx_demo` ile başlatın. Adaptör `x-simulated-trading: 1` başlığını zorunlu gönderir, gerçek para modunu desteklemez. Günlük özsermaye kaybı %1'e ulaşırsa yeni alışlar durur.

@@ -1,4 +1,4 @@
-import asyncio,json
+import asyncio,json,os
 from datetime import datetime,timezone
 from fastapi import APIRouter,Header,HTTPException,Query,WebSocket,WebSocketDisconnect,Response
 from .catalog import catalog
@@ -34,6 +34,11 @@ def cursor_page(rows,cursor,limit):
  if start+limit<len(rows) and page:next_cursor=str(page[-1].get("id") if isinstance(page[-1],dict) else page[-1].id)
  return page,next_cursor
 async def uid(auth):return (await authenticate(auth)).user_id
+async def bot_control(auth):
+ """Bots are global background tasks; public demos disable control (BOT_CONTROL=false) and never allow guests."""
+ user=await authenticate(auth)
+ if os.getenv("BOT_CONTROL","true").lower()!="true" or user.mode=="guest":raise HTTPException(403,detail={"code":"BOT_CONTROL_DISABLED","message":"Bot kontrolü bu demo ortamında kapalı"})
+ return user
 async def get_quote(iid):
  i=catalog.get(iid)
  if not i:raise HTTPException(404,detail={"code":"INSTRUMENT_NOT_FOUND","message":"Enstrüman bulunamadı"})
@@ -320,13 +325,13 @@ async def journal_analytics(authorization:str|None=Header(default=None)):
 async def broker_capabilities():return ApiResponse(data={"adapter":live_broker.name,**live_broker.capabilities.__dict__},meta=ApiMeta(source="broker-router",freshness=Freshness.live))
 @router.post("/bots/{bot_id}/start",response_model=ApiResponse)
 async def start_bot(bot_id:str,mode:str="paper",authorization:str|None=Header(default=None)):
- await uid(authorization)
+ await bot_control(authorization)
  try:data=bot_service.start(bot_id,BotConfig(mode=mode))
  except RuntimeError as error:raise HTTPException(409,detail={"code":str(error),"message":"OKX demo anahtarları yapılandırılmamış"}) from error
  return ApiResponse(data=data,meta=ApiMeta(source="bot-engine",freshness=Freshness.live))
 @router.post("/bots/{bot_id}/stop",response_model=ApiResponse)
 async def stop_bot(bot_id:str,authorization:str|None=Header(default=None)):
- await uid(authorization)
+ await bot_control(authorization)
  return ApiResponse(data=bot_service.stop(bot_id),meta=ApiMeta(source="bot-engine",freshness=Freshness.live))
 @router.get("/bots/{bot_id}",response_model=ApiResponse)
 async def bot_status(bot_id:str,authorization:str|None=Header(default=None)):
@@ -338,7 +343,7 @@ async def bot_status(bot_id:str,authorization:str|None=Header(default=None)):
 @router.websocket("/ws/market/{instrument_id:path}")
 async def stream(ws:WebSocket,instrument_id:str,token:str|None=None):
  await ws.accept()
- try:user=(await authenticate(f"Bearer {token}" if token else None)).user_id
+ try:user=(await authenticate((f"Guest {token[6:]}" if token.startswith("guest:") else f"Bearer {token}") if token else None)).user_id
  except HTTPException:await ws.send_json({"error":{"code":"AUTH_REQUIRED"}});await ws.close(code=1008);return
  instrument=catalog.get(instrument_id)
  if not instrument:await ws.send_json({"error":{"code":"INSTRUMENT_NOT_FOUND"}});await ws.close(code=1008);return
