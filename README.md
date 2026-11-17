@@ -4,7 +4,7 @@ A research and **paper-trading** terminal for crypto, US stocks, BIST stocks and
 
 > Paper trading and research only. Nothing here is investment advice.
 
-**Live demo:** _add your URL here_ · **API docs:** `<api-url>/docs`
+**Live demo:** https://nexus-terminal-lyart.vercel.app · **API docs:** https://nexus-api-lgut.onrender.com/docs _(free tier: the first request after idle can take ~1 minute)_
 
 **Stack:** Python 3.12 · FastAPI · pandas · Next.js 16 / React 19 · TypeScript · lightweight-charts · Redis (optional) · Supabase (optional) · Docker Compose · GitHub Actions
 
