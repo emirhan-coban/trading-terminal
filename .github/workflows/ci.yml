@@ -38,3 +38,7 @@ jobs:
         run: npx vitest run
       - name: Build
         run: npx next build
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: E2E tests
+        run: npx playwright test

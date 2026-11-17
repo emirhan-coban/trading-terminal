@@ -4,7 +4,15 @@ A research and **paper-trading** terminal for crypto, US stocks, BIST stocks and
 
 > Paper trading and research only. Nothing here is investment advice.
 
-**Live demo:** https://nexus-terminal-lyart.vercel.app · **API docs:** https://nexus-api-lgut.onrender.com/docs _(free tier: the first request after idle can take ~1 minute)_
+**Live demo:** https://nexus-terminal-lyart.vercel.app · **API docs:** https://nexus-api-lgut.onrender.com/docs _(free tier: the first request after idle can take up to ~1 minute)_
+
+<p align="center">
+  <img src="docs/screenshots/paper-trading.png" alt="NEXUS terminal: live BTC/USDT chart, paper order ticket and open position" width="100%">
+</p>
+<p align="center">
+  <img src="docs/screenshots/terminal.png" alt="Watchlist with live crypto and delayed stock quotes" width="64%">
+  <img src="docs/screenshots/mobile.png" alt="Mobile layout" width="22%">
+</p>
 
 **Stack:** Python 3.12 · FastAPI · pandas · Next.js 16 / React 19 · TypeScript · lightweight-charts · Redis (optional) · Supabase (optional) · Docker Compose · GitHub Actions
 
@@ -53,12 +61,12 @@ Everything works without Supabase, Redis or API keys. Copy `backend/.env.example
 ## Tests
 
 ```bash
-.venv/bin/python -m pytest backend/tests -q      # 52 backend tests
+.venv/bin/python -m pytest backend/tests -q      # backend unit/contract tests
 cd frontend && npm test && npm run lint && npm run build
 cd frontend && npx playwright test               # e2e (needs `npm run build` first)
 ```
 
-CI (`.github/workflows/ci.yml`) runs pytest, eslint, vitest and `next build`.
+CI (`.github/workflows/ci.yml`) runs all of the above on every push and pull request: pytest, eslint, vitest, `next build` and the Playwright e2e suite.
 
 ## Deploy (free tier)
 
@@ -67,11 +75,17 @@ CI (`.github/workflows/ci.yml`) runs pytest, eslint, vitest and `next build`.
 3. **Optional**: `REDIS_URL` (Upstash free) for a shared quote cache; Supabase (`PERSISTENCE=supabase`, run `backend/schema_v3.sql`, set `NEXT_PUBLIC_SUPABASE_*` and `REQUIRE_AUTH=true`) for real accounts.
 4. **Free domain**: the `*.vercel.app` URL works as-is; for a nicer name, request `<name>.is-a.dev` via a pull request to the `is-a-dev/register` repository and add it as a custom domain in Vercel.
 
-Free-tier caveats: Render sleeps after ~15 minutes idle (the UI shows a "backend is waking up" banner and the first request takes ~30–60 s); in-memory guest accounts reset on restart; the global OKX bot is disabled on the public demo.
+Free-tier caveats: Render sleeps after ~15 minutes idle (the UI shows a "backend is waking up" banner and the first request can take up to ~1 minute; a 1-minute uptime ping of `/health` avoids it); in-memory guest accounts reset on restart; the global OKX bot is disabled on the public demo.
 
 ## Known limitations
 
-See `TRADING_BOT_PLAN.md` for the audit of the paper engine (open-order reservations, restart recovery, multi-asset margin) and the bot roadmap.
+- **Paper only, by design.** Live-money execution is intentionally unsupported; the broker layer fails closed.
+- **Free data has limits.** yfinance quotes are delayed and can be rate-limited from cloud IPs; the API labels such data `delayed` or `stale` instead of hiding it.
+- **Public demo state is ephemeral.** Guest accounts live in memory and reset when the free-tier server restarts. Use Supabase persistence for real accounts.
+- **Paper engine gaps:** open orders do not reserve cash, pending orders are not restored after a restart, and there is no margin/short model for multi-asset accounts.
+- **Single global OKX bot** runs inside the API process, so it is disabled on the public demo.
+
+`TRADING_BOT_PLAN.md` contains the full audit and the bot roadmap.
 
 ---
 

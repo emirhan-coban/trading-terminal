@@ -22,5 +22,5 @@ export default function BackendStatus(){
   return()=>{cancelled=true;clearTimeout(first);clearTimeout(timer)}
  },[]);
  if(ready)return null;
- return <div role="status" style={{position:'fixed',top:0,left:0,right:0,zIndex:50,padding:'6px 12px',background:'#e5b657',color:'#1a1a1a',font:'12px ui-monospace,monospace',textAlign:'center'}}>API sunucusu uyanıyor (ücretsiz barındırma, ~30–60 sn sürebilir)… / Backend is waking up, this can take up to a minute.</div>
+ return <div role="status" style={{position:'fixed',top:0,left:0,right:0,zIndex:50,padding:'6px 12px',background:'#e5b657',color:'#1a1a1a',font:'12px ui-monospace,monospace',textAlign:'center'}}>API sunucusu uyanıyor (ücretsiz barındırma, ~1 dakika sürebilir)… / Backend is waking up, this can take up to ~1 minute.</div>
 }
